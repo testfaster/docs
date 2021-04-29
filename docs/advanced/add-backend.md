@@ -24,7 +24,7 @@ git clone https://github.com/lukemarsden/luke-vimrc
 luke-vimrc/setup.sh
 ```
 
-Log out and log in again. This will change your `tmux` settings from the default just to wind you up.
+Log out and log in again. This will change your `tmux` settings from the default just to wind you up (hint: use Ctrl+A).
 
 ## Ignite
 
