@@ -111,3 +111,10 @@ git pull; source .env; sudo -E go run testfaster_background.go 2>&1 |tee log
 ```
 
 Sometimes it may be useful to place `DEBUG_HTTP_ALL=1 DEBUG_HTTP=1` just before `sudo` in the above command.
+
+## TODO: Monitoring
+
+We can run a prometheus node exporter to monitor the disk, CPU and memory on the node.
+It will also be able to monitor queue length and various other interesting metrics in the future.
+
+Right now we haven't written the docs on how to install or configure that yet, though. Sorry.
