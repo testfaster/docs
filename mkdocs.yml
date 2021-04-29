@@ -3,7 +3,8 @@ site_name: Testfaster
 nav:
   - index.md
 #  - how-it-works.md
-  - add-backend.md
+  - Advanced Users:
+    - advanced/add-backend.md
 #  - using.md
 #  - Tutorials:
 #    - tutorials/one.md
