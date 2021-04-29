@@ -70,7 +70,10 @@ Now for the good stuff.
 
 ```
 sudo apt-get update
-sudo apt install -y vim golang-go tmux
+sudo apt install -y vim exuberant-ctags golang-go tmux
+```
+
+```
 git clone git@gitlab.mlops.consulting:root/testfaster
 ```
 
@@ -79,7 +82,7 @@ cd testfaster/backend
 ```
 
 ```
-echo <EOF >> .env
+cat <<'EOF' > .env
 export DEBUG=1
 export TARGET_API=https://testfaster.ci
 export ACCESS_TOKEN=<backend-access-token>
@@ -116,9 +119,46 @@ git pull; source .env; sudo -E go run testfaster_background.go 2>&1 |tee log
 
 Sometimes it may be useful to place `DEBUG_HTTP_ALL=1 DEBUG_HTTP=1` just before `sudo` in the above command.
 
-## TODO: Monitoring
+## Monitoring
 
-We can run a prometheus node exporter to monitor the disk, CPU and memory on the node.
-It will also be able to monitor queue length and various other interesting metrics in the future.
+You can run a prometheus node exporter and we will monitor the disk, CPU and memory on the node for you.
+We'll also be able to monitor VM queue length and various other interesting metrics in the future, and plan to expose these metrics in the Testfaster web interface.
 
-Right now we haven't written the docs on how to install or configure that yet, though. Sorry.
+```
+sudo su
+```
+```
+useradd --no-create-home --shell /bin/false node_exporter
+```
+```
+wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
+```
+```
+tar xvfz node_exporter-1.1.2.linux-amd64.tar.gz
+cp node_exporter-1.1.2.linux-amd64/node_exporter /usr/local/bin
+chown node_exporter:node_exporter /usr/local/bin/node_exporter
+rm -rf node_exporter-1.1.2.linux-amd64*
+```
+```
+cat <<'EOF' > /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+systemctl daemon-reload
+systemctl start node_exporter
+```
+
+Then tell us the IP address or hostname of your server and ask us to add it to our Prometheus instance.
