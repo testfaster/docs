@@ -1,0 +1,30 @@
+site_name: Testfaster
+
+nav:
+  - index.md
+#  - how-it-works.md
+  - add-backend.md
+#  - using.md
+#  - Tutorials:
+#    - tutorials/one.md
+#    - tutorials/two.md
+#  - help.md
+#  - get-involved.md
+#  - release-notes.md
+#  - faqs.md
+
+theme:
+  name: material
+  logo: images/logo-white.png
+  favicon: images/logo-blue.png
+  features:
+    - navigation.expand
+markdown_extensions:
+  - attr_list
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - admonition
+repo_url: https://github.com/testfaster/docs
+repo_name: testfaster/docs
+edit_uri: edit/main/docs/
