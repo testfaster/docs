@@ -66,7 +66,7 @@ Now for the good stuff.
 
 ```
 sudo apt-get update
-sudo apt install -y vim golang-go
+sudo apt install -y vim golang-go tmux
 git clone git@gitlab.mlops.consulting:root/testfaster
 ```
 
