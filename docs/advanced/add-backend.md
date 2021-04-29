@@ -86,8 +86,13 @@ EOF
 ```
 
 Get your backend access token from us, and fill in a docker username and access token for a Docker Hub Pro account ($7/month) so that you can download images from Docker Hub.
-We'll handle distributing that docker token to your VMs, their k8s cluster and all service accounts that show up in any namespace in that Kubernetes cluster automatically for you.
-(We run an agent on each VM which does that for you.)
+
+## Testfaster agent
+
+We'll handle distributing that docker token to your VMs, their k8s clusters and all service accounts that show up in any namespace in that Kubernetes cluster automatically for you.
+We run an agent on each VM which does this for you.
+
+That agent also rewrites `imagePullPolicy: Always` to `imagePullPolicy: IfNotPresent` so that starting VMs doesn't hammer Docker Hub when you've properly cached the images.
 
 ## Start backend
 
