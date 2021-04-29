@@ -14,6 +14,10 @@ SSH into it, typically with the user `ubuntu`, then run the following commands o
 
 ```
 ssh-keygen
+```
+Accept all the defaults (hit Enter until it stops asking questions).
+
+```
 cat ~/.ssh/id_rsa.pub
 ```
 
@@ -26,18 +30,18 @@ luke-vimrc/setup.sh
 
 Log out and log in again. This will change your `tmux` settings from the default just to wind you up (hint: use Ctrl+A).
 
-## Ignite
+## Ignite for running VMs
 
 From [the ignite docs](https://github.com/weaveworks/ignite/blob/main/docs/installation.md).
 
 ```
-apt-get update
-apt-get install -y --no-install-recommends dmsetup openssh-client git binutils
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends dmsetup openssh-client git binutils
 ```
 
 We still use the docker backend, because reasons.
 ```
-apt-get install -y docker.io
+sudo apt-get install -y docker.io
 ```
 
 ```
@@ -47,7 +51,7 @@ sudo mkdir -p /opt/cni/bin
 curl -sSL https://github.com/containernetworking/plugins/releases/download/${CNI_VERSION}/cni-plugins-linux-${ARCH}-${CNI_VERSION}.tgz | sudo tar -xz -C /opt/cni/bin
 ```
 
-Note we use an older version of ignite.
+Note we use an older version of ignite (we haven't updated our code to work with 0.9 yet).
 ```
 export VERSION=v0.8.0
 export GOARCH=$(go env GOARCH 2>/dev/null || echo "amd64")
