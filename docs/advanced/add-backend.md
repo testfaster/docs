@@ -114,6 +114,10 @@ cd /home/ubuntu/testfaster/backend
 ```
 
 ```
+sudo mkdir -p /var/lib/firecracker/vm
+```
+
+```
 git pull; source .env; sudo -E go run testfaster_background.go 2>&1 |tee log 
 ```
 
