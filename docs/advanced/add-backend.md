@@ -71,6 +71,9 @@ Now for the good stuff.
 ```
 sudo apt-get install -y software-properties-common gpg
 sudo add-apt-repository ppa:longsleep/golang-backports
+```
+
+```
 sudo apt-get update
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 52B59B1571A79DBC054901C0F6BC817356A3D45E
 sudo apt-get install -y golang-go
